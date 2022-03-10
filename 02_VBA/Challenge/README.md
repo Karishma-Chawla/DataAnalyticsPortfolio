@@ -29,26 +29,22 @@ Rows are counted to be looped over.
 6.	Formatting is applied.
 
 ### Comparison of stocks for 2017 and 2018 
+
 1.	The analysis is in for of a table that sums of Total Daily volume and Return for each of 12 stocks in the list. 
 2.	The first notable comparison is that most stocks in 2017 gave a positive return and majority of the stocks gave a negative return in 2018.
 3.	ENHP and RUN are outperformers in 2018 and have delivered handsome 81.9% and 84% returns.
 4.	DQ and ENPH saw doubling of trading volumes in 2018 v/s 2017.
-    ![image](https://user-images.githubusercontent.com/98617082/157595083-328628de-9060-4ff4-a09c-7250df186832.png)
+
+![image](https://user-images.githubusercontent.com/98617082/157595083-328628de-9060-4ff4-a09c-7250df186832.png)
 ![image](https://user-images.githubusercontent.com/98617082/157595095-cd8ad39a-8b5f-47e3-8481-28cc348298c0.png)
 
 
 ### Execution timelines of Refactored code
 Execution timeline by using the refactored code is almost 1/5th of the original code from ~0.93 seconds to ~0.17seconds.
-
-Snapshot 2017 Original v/s refactored
-  ![image](https://user-images.githubusercontent.com/98617082/157595115-4b2f8f5f-1424-4346-84f4-e2594932518f.png)
-![image](https://user-images.githubusercontent.com/98617082/157595121-b76f87a3-86d6-4d2f-b7a0-1eff4a5b6374.png)
-
-Snapshot 2018 Original v/s refactored
-  ![image](https://user-images.githubusercontent.com/98617082/157595126-897d561b-f73c-4019-92f7-184718d73e27.png)
-![image](https://user-images.githubusercontent.com/98617082/157595141-e9b98122-9abd-4e55-b6fe-c195ebd7775c.png)
-
-
+![image](https://user-images.githubusercontent.com/98617082/157595476-3e261121-408a-4160-8f40-2e18722c83f8.png)
+![image](https://user-images.githubusercontent.com/98617082/157595485-00372c36-1df6-4e13-9487-f5f91316e10a.png)
+![image](https://user-images.githubusercontent.com/98617082/157595500-01de1cee-5c11-4372-bf13-b5ea13a7e8ae.png)
+![image](https://user-images.githubusercontent.com/98617082/157595507-2b723d82-bf21-41b2-9662-2cadfd234d1f.png)
 
 ## Summary
 ### Advantages of Refactoring code
