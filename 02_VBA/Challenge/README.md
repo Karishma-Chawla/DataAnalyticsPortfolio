@@ -11,14 +11,20 @@ The code” All Stock Analysis” has to be refactored to be executed faster in 
 ### Flow of the code:
 In order to compare performance, it is important to understand the workflow of the code:
 1.	First step is to take the input for “Year” from the user
- 
+ ![image](https://user-images.githubusercontent.com/98617082/157594937-2af4b0de-742e-406c-9496-1b066d1f51f8.png)
+
 2.	Next the code activates the right worksheet based on the input.
 3.	Variables and arrays are defined and initialized. Variables ‘tickerindex’ and ‘tickerVolumes’ are initialized at ‘zero’.
 Rows are counted to be looped over.  
+![image](https://user-images.githubusercontent.com/98617082/157594984-c6ea3c01-c3b5-4439-9510-3036ffddfa0a.png)
+
 
 4.	Code starts to loop over each row storing information on volume, starting price and ending price using and Conditional statement for each ticker utilizing ‘tickerindex’ to move to the next ticker.
+ ![image](https://user-images.githubusercontent.com/98617082/157595003-554dfd63-4003-40cb-bbcc-e419fde9f9f8.png)
+
  
 5.	“All stock analysis” is activate and Output is stored along with message box on the time.
+![image](https://user-images.githubusercontent.com/98617082/157595018-0879a8bb-6412-4930-9401-477cc8da726b.png)
  
 6.	Formatting is applied.
 
@@ -27,15 +33,21 @@ Rows are counted to be looped over.
 2.	The first notable comparison is that most stocks in 2017 gave a positive return and majority of the stocks gave a negative return in 2018.
 3.	ENHP and RUN are outperformers in 2018 and have delivered handsome 81.9% and 84% returns.
 4.	DQ and ENPH saw doubling of trading volumes in 2018 v/s 2017.
-  
+    ![image](https://user-images.githubusercontent.com/98617082/157595083-328628de-9060-4ff4-a09c-7250df186832.png)
+![image](https://user-images.githubusercontent.com/98617082/157595095-cd8ad39a-8b5f-47e3-8481-28cc348298c0.png)
+
 
 ### Execution timelines of Refactored code
 Execution timeline by using the refactored code is almost 1/5th of the original code from ~0.93 seconds to ~0.17seconds.
 
 Snapshot 2017 Original v/s refactored
-  
+  ![image](https://user-images.githubusercontent.com/98617082/157595115-4b2f8f5f-1424-4346-84f4-e2594932518f.png)
+![image](https://user-images.githubusercontent.com/98617082/157595121-b76f87a3-86d6-4d2f-b7a0-1eff4a5b6374.png)
+
 Snapshot 2018 Original v/s refactored
-  
+  ![image](https://user-images.githubusercontent.com/98617082/157595126-897d561b-f73c-4019-92f7-184718d73e27.png)
+![image](https://user-images.githubusercontent.com/98617082/157595141-e9b98122-9abd-4e55-b6fe-c195ebd7775c.png)
+
 
 
 ## Summary
