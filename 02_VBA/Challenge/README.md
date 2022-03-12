@@ -93,7 +93,7 @@ Rows are counted to be looped over.
     
   ```
     
-    ### Comparison of stocks for 2017 and 2018 
+### Comparison of stocks for 2017 and 2018 
 
 1.	The analysis is in for of a table that sums of Total Daily volume and Return for each of 12 stocks in the list. 
 2.	The first notable comparison is that most stocks in 2017 gave a positive return and majority of the stocks gave a negative return in 2018.
