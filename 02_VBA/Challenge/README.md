@@ -16,19 +16,84 @@ In order to compare performance, it is important to understand the workflow of t
 2.	Next the code activates the right worksheet based on the input.
 3.	Variables and arrays are defined and initialized. Variables ‘tickerindex’ and ‘tickerVolumes’ are initialized at ‘zero’.
 Rows are counted to be looped over.  
-![image](https://user-images.githubusercontent.com/98617082/157594984-c6ea3c01-c3b5-4439-9510-3036ffddfa0a.png)
+```
+ 'Activate data worksheet
+    Worksheets(yearValue).Activate
+    
+    'Get the number of rows to loop over
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    '1a) Create a ticker Index
+            tickerIndex = 0
+            
+    '1b) Create three output arrays
+            Dim tickerVolumes(12) As Long
+            Dim tickerStartingPrices(12) As Single
+            Dim tickerEndingPrices(12) As Single
+    
+    ''2a) Create a for loop to initialize the tickerVolumes to zero.
+            Worksheets(yearValue).Activate
+            tickerVolumes(tickerIndex) = 0
+            
+    ''2b) Loop over all the rows in the spreadsheet.
+    
+    For j = 2 To RowCount
+    
 
+  ```
+ 4. Code starts to loop over each row storing information on volume, starting price and ending price using and Conditional statement for each ticker utilizing ‘tickerindex’ to move to the next ticker.
+  
+  ```
+  
+  ''2b) Loop over all the rows in the spreadsheet.
+    
+    For j = 2 To RowCount
+    
+        '3a) Increase volume for current ticker
+            If Cells(j, 1) = tickers(tickerIndex) Then
+            tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(j, 8).Value
+            End If
+            
+        
+        '3b) Store starting price if the current row is the first row with the selected tickerIndex.
+        
+            If Cells(j - 1, 1).Value <> tickers(tickerIndex) And Cells(j, 1).Value = tickers(tickerIndex) Then
+            tickerStartingPrices(tickerIndex) = Cells(j, 6).Value
+            End If
+        
+        '3c) Store ending price if the current row is the last row with the selected ticker
+        
+            If Cells(j + 1, 1).Value <> tickers(tickerIndex) And Cells(j, 1).Value = tickers(tickerIndex) Then
+            tickerEndingPrices(tickerIndex) = Cells(j, 6).Value
+            End If
 
-4.	Code starts to loop over each row storing information on volume, starting price and ending price using and Conditional statement for each ticker utilizing ‘tickerindex’ to move to the next ticker.
- ![image](https://user-images.githubusercontent.com/98617082/157595003-554dfd63-4003-40cb-bbcc-e419fde9f9f8.png)
-
- 
-5.	“All stock analysis” is activate and Output is stored along with message box on the time.
-![image](https://user-images.githubusercontent.com/98617082/157595018-0879a8bb-6412-4930-9401-477cc8da726b.png)
- 
-6.	Formatting is applied.
-
-### Comparison of stocks for 2017 and 2018 
+        '3d Increase the tickerIndex.
+            If Cells(j, 1).Value <> Cells(j + 1, 1).Value Then
+            tickerIndex = tickerIndex + 1
+            End If
+    Next j
+    
+   
+    
+  ```
+  
+   5.	“All stock analysis” is activate and Output is stored along with message box on the time.
+  
+  ```
+    For j = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+            
+           Cells(j + 4, 1).Value = tickers(j)
+           Cells(j + 4, 2).Value = tickerVolumes(j)
+           Cells(j + 4, 3).Value = tickerEndingPrices(j) / tickerStartingPrices(j) - 1
+        
+        
+    Next j
+    
+  ```
+    
+    ### Comparison of stocks for 2017 and 2018 
 
 1.	The analysis is in for of a table that sums of Total Daily volume and Return for each of 12 stocks in the list. 
 2.	The first notable comparison is that most stocks in 2017 gave a positive return and majority of the stocks gave a negative return in 2018.
@@ -69,3 +134,6 @@ Execution timeline by using the refactored code is almost 1/5th of the original 
 ### Disadvantages of refactoring the original All Stock Analysis VBA script
 1.	Refactoring code in this instance has resulted in code becoming bulkier with many more lines of code to introduce additional conditional statements. 
 2.	Because of the increased lines, it can be more time consuming for new programmers to update the code at a later date.
+3.	Cost of refactoring might not justify the refactoring if dataset is not very large.
+
+    
