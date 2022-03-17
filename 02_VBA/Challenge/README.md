@@ -11,32 +11,105 @@ The code” All Stock Analysis” has to be refactored to be executed faster in 
 ### Flow of the code:
 In order to compare performance, it is important to understand the workflow of the code:
 1.	First step is to take the input for “Year” from the user
- 
+ ![image](https://user-images.githubusercontent.com/98617082/157594937-2af4b0de-742e-406c-9496-1b066d1f51f8.png)
+
 2.	Next the code activates the right worksheet based on the input.
 3.	Variables and arrays are defined and initialized. Variables ‘tickerindex’ and ‘tickerVolumes’ are initialized at ‘zero’.
 Rows are counted to be looped over.  
+```
+ 'Activate data worksheet
+    Worksheets(yearValue).Activate
+    
+    'Get the number of rows to loop over
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    '1a) Create a ticker Index
+            tickerIndex = 0
+            
+    '1b) Create three output arrays
+            Dim tickerVolumes(12) As Long
+            Dim tickerStartingPrices(12) As Single
+            Dim tickerEndingPrices(12) As Single
+    
+    ''2a) Create a for loop to initialize the tickerVolumes to zero.
+            Worksheets(yearValue).Activate
+            tickerVolumes(tickerIndex) = 0
+            
+    ''2b) Loop over all the rows in the spreadsheet.
+    
+    For j = 2 To RowCount
+    
 
-4.	Code starts to loop over each row storing information on volume, starting price and ending price using and Conditional statement for each ticker utilizing ‘tickerindex’ to move to the next ticker.
- 
-5.	“All stock analysis” is activate and Output is stored along with message box on the time.
- 
-6.	Formatting is applied.
+  ```
+ 4. Code starts to loop over each row storing information on volume, starting price and ending price using and Conditional statement for each ticker utilizing ‘tickerindex’ to move to the next ticker.
+  
+  ```
+  
+  ''2b) Loop over all the rows in the spreadsheet.
+    
+    For j = 2 To RowCount
+    
+        '3a) Increase volume for current ticker
+            If Cells(j, 1) = tickers(tickerIndex) Then
+            tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(j, 8).Value
+            End If
+            
+        
+        '3b) Store starting price if the current row is the first row with the selected tickerIndex.
+        
+            If Cells(j - 1, 1).Value <> tickers(tickerIndex) And Cells(j, 1).Value = tickers(tickerIndex) Then
+            tickerStartingPrices(tickerIndex) = Cells(j, 6).Value
+            End If
+        
+        '3c) Store ending price if the current row is the last row with the selected ticker
+        
+            If Cells(j + 1, 1).Value <> tickers(tickerIndex) And Cells(j, 1).Value = tickers(tickerIndex) Then
+            tickerEndingPrices(tickerIndex) = Cells(j, 6).Value
+            End If
 
+        '3d Increase the tickerIndex.
+            If Cells(j, 1).Value <> Cells(j + 1, 1).Value Then
+            tickerIndex = tickerIndex + 1
+            End If
+    Next j
+    
+   
+    
+  ```
+  
+   5.	“All stock analysis” is activate and Output is stored along with message box on the time.
+  
+  ```
+    For j = 0 To 11
+        
+        Worksheets("All Stocks Analysis").Activate
+            
+           Cells(j + 4, 1).Value = tickers(j)
+           Cells(j + 4, 2).Value = tickerVolumes(j)
+           Cells(j + 4, 3).Value = tickerEndingPrices(j) / tickerStartingPrices(j) - 1
+        
+        
+    Next j
+    
+  ```
+    
 ### Comparison of stocks for 2017 and 2018 
+
 1.	The analysis is in for of a table that sums of Total Daily volume and Return for each of 12 stocks in the list. 
 2.	The first notable comparison is that most stocks in 2017 gave a positive return and majority of the stocks gave a negative return in 2018.
 3.	ENHP and RUN are outperformers in 2018 and have delivered handsome 81.9% and 84% returns.
 4.	DQ and ENPH saw doubling of trading volumes in 2018 v/s 2017.
-  
+
+![image](https://user-images.githubusercontent.com/98617082/157595083-328628de-9060-4ff4-a09c-7250df186832.png)
+![image](https://user-images.githubusercontent.com/98617082/157595095-cd8ad39a-8b5f-47e3-8481-28cc348298c0.png)
+
 
 ### Execution timelines of Refactored code
 Execution timeline by using the refactored code is almost 1/5th of the original code from ~0.93 seconds to ~0.17seconds.
-
-Snapshot 2017 Original v/s refactored
-  
-Snapshot 2018 Original v/s refactored
-  
-
+![image](https://user-images.githubusercontent.com/98617082/157595476-3e261121-408a-4160-8f40-2e18722c83f8.png)
+![image](https://user-images.githubusercontent.com/98617082/157595485-00372c36-1df6-4e13-9487-f5f91316e10a.png)
+![image](https://user-images.githubusercontent.com/98617082/157595500-01de1cee-5c11-4372-bf13-b5ea13a7e8ae.png)
+![image](https://user-images.githubusercontent.com/98617082/157595507-2b723d82-bf21-41b2-9662-2cadfd234d1f.png)
 
 ## Summary
 ### Advantages of Refactoring code
@@ -61,3 +134,6 @@ Snapshot 2018 Original v/s refactored
 ### Disadvantages of refactoring the original All Stock Analysis VBA script
 1.	Refactoring code in this instance has resulted in code becoming bulkier with many more lines of code to introduce additional conditional statements. 
 2.	Because of the increased lines, it can be more time consuming for new programmers to update the code at a later date.
+3.	Cost of refactoring might not justify the refactoring if dataset is not very large.
+
+    
